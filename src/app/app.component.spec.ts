@@ -32,4 +32,21 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain('my-app app is running!');
   });
+
+
+  it('Espero que el formulario sera inválido',()=>{
+    const fixture = TestBed.createComponent(AppComponent)
+    const app = fixture.componentInstance
+
+    fixture.checkNoChanges()
+
+    let formulario = app.formulario
+    let email = app.formulario.controls['email']
+    let password =  app.formulario.controls['password']
+
+    email.setValue('admin@')
+    password.setValue('123456')
+
+    expect(app.formulario.invalid).toBeTruthy()
+  })
 });
